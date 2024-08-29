@@ -42,7 +42,7 @@ By understanding the factors that influence student inquiries and leveraging tar
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Data Sources
 The dataset contains 1 excel file:
-1. Inquiry Information.excel
+1. Inquiry Information
    
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Tools
@@ -88,4 +88,140 @@ For this project, a thorough data cleaning process was undertaken to ensure the 
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-### DASHBOARD
+### DASHBOARD  
+**1.	Inquiry Volume Over Time: Identify any trends in the number of inquiries over time (e.g., weekly or monthly trends)**
+
+Computed number of inquiries made  
+```No of Inquiries = COUNTROWS('Inquiry Information')```   
+
+Calculated total number of days for inquiry information collection  
+```Total No. of Days = DATEDIFF(MIN('Inquiry Information'[Date]), MAX('Inquiry Information'[Date]), DAY)```  
+
+Created calculated column DayOfWeek to find number of inquiries made in a day of a week  
+```DayOfWeek = FORMAT([Date], "dddd")```   
+
+Created calculated column InquiryMonth  to find number of inquiries made in a month  
+```InquiryMonth = FORMAT('Inquiry Information'[Date], "YYYY-MM")```    
+
+Created calculated column InquiryHour to find number of inquiries made in a hour    
+```InquiryHour = HOUR([Time])```    
+
+
+
+**2. Age Analysis: Determine which age groups are most interested in our courses**  
+a) Created a calculated column Age category to categorize age of children inquired to different categories   
+![image](https://github.com/user-attachments/assets/3b320779-739e-4c26-a45c-1cda7fbeb046)    
+
+b) Created Stacked Column Chart: Age Categories vs. Number of Inquiries by Course    
+The stacked column chart provides a visual representation of the number of inquiries made for different courses across various age categories. This chart is useful for understanding which age groups are most interested in specific courses, helping to tailor marketing efforts and course content to target the right audience.     
+![image](https://github.com/user-attachments/assets/2be6eb62-5e12-4f5a-ac07-1ae8e2a036e2)  
+
+
+
+**3.	Course Popularity: Analyze which courses are most in demand and if there's a correlation between the age of the kid and the course chosen.**  
+a) Created Stacked Column Chart: Interested Course vs. Number of Inquiries by Age Category    
+The stacked column chart visualizes the relationship between the courses of interest and the number of inquiries across different age categories. This chart is effective for identifying which courses are most popular among various age groups, providing insights into age-specific preferences and guiding targeted marketing and curriculum development strategies.  
+![image](https://github.com/user-attachments/assets/6050f66c-c3bc-4822-b597-6f6e4e527a44)   
+
+
+**4. Inquiry Status Analysis: Examine the status of inquiries to understand how many have led to enrollment, and identify any common reasons for not enrolling (e.g., fee is high, not interested).**
+Conditions and Corresponding Categories:  
+Interested: If the status is "Enrolled", the response category is set to "Interested".  
+Not Interested: If the status is "Not Interested", "Demo Given. Not interested", "Fee is High", or "Different course Enquiry", the response category is set to "Not Interested".
+No Response: If the status is "No response", the response category is set to "No Response".
+Other: If the status is "Marketing spam inquiry" or "Marketing inquiry", the response category is set to "Other".
+ A new calculated column named Response Category created based on the status of inquiries in the 'Inquiry Information'[Status]
+
+![image](https://github.com/user-attachments/assets/e43e177d-ee2a-4b28-bb47-d41643a2972e)
+
+
+### Insights
+**Total Inquiries:**
+The data collected shows a total of 74 inquiries over a period of 141 days. This gives an average of approximately 0.52 inquiries per day.  
+  
+**Weekly Inquiry Trends:**  
+Wednesday has shown the highest number of inquiries, indicating it’s the most active day of the week for inquiries.  
+Sunday follows as the second highest, with Saturday and Monday also showing significant activity.  
+
+
+**Monthly Inquiry Trends:**  
+July exhibited the highest number of inquiries, suggesting it is the peak month for inquiry activity.  
+May and June also show high inquiry volumes but are less than July.  
+
+
+**Daily Inquiry Trends:**  
+The peak hour for inquiries is 2 PM, suggesting that this time is optimal for receiving inquiries.
+6 PM and 8 PM are also notable, indicating that late afternoon and early evening are busy times for inquiries.
+
+
+**Age Analysis**   
+The age groups 11-13 and 13-15 years had the most inquiries, with Python being particularly popular in these age groups followed by Robotics  
+
+
+**Age Category Trends:**  
+The 11-13 years age category consistently shows the highest interest  for Python, Robotics, and Web Development courses.  
+The 13-15 years age category is also notably active, particularly in Python, Robotics and Web Development courses.  
+Interest in courses declines in the age groups outside 11-15 years, with fewer inquiries in the 7-9 years and 5-7 years categories.  
+
+
+**Higher Interest from Novices:**  
+Individuals with no previous coding experience show greater interest in Python and Robotics courses compared to those with prior coding experience.   
+
+
+**High No-Response Rate (41 inquiries):**  
+A significant number of inquiries resulted in no response.   
+
+
+**High Fees (16 inquiries):**  
+Concerns about the fees are a notable barrier for 16 individuals.  
+
+
+**General Lack of Interest (7 inquiries):**  
+A small number of inquiries were marked as “not interested.”    
+
+
+### Recommendations for Improving Enrollment  
+
+**Enhance Follow-Up and Engagement**  
+Structured Follow-Up: Implement a structured follow-up process to address the high no-response rate. This could include automated emails, phone calls, or personalized messages to re-engage potential students.  
+Timely Response: Ensure prompt responses to inquiries, especially during peak hours like 2 PM, 6 PM, and 8 PM when inquiries are most frequent.  
+
+**Optimize Communication Channels**  
+Preferred Contact Times: Schedule follow-ups and communications around peak inquiry times. For example, sending emails or making calls in the late afternoon and early evening could improve engagement.  
+Multichannel Approach: Use multiple channels (email, phone, social media) to reach out to prospects, catering to their preferred communication method.  
+
+
+**Address Fee Concerns**  
+Flexible Payment Options: Introduce flexible payment plans, discounts, or scholarships to make the courses more accessible and address concerns about high fees.  
+Value Proposition: Clearly communicate the value and benefits of the courses to justify the fees. Highlight unique features, outcomes, and success stories.  
+
+
+
+**Leverage Peak Inquiry Times**  
+Special Offers: Consider offering limited-time promotions or discounts during peak inquiry periods (e.g., Wednesdays and Sundays) to capitalize on higher engagement.  
+Enhanced Outreach: Increase marketing and outreach efforts around peak times to maximize the number of inquiries and conversions.  
+
+
+
+**Tailor Courses to High-Interest Age Groups**  
+Customized Content: Develop and promote content specifically targeted at the 11-13 years and 13-15 years age groups, as they show the highest interest in Python, Robotics, and Web Development.  
+Engaging Workshops: Create engaging and age-appropriate workshops or introductory sessions to attract these age groups and increase enrollment.  
+
+
+**Cater to Beginners**  
+Beginner-Friendly Materials: Provide resources and introductory content tailored for individuals with no prior coding experience. Highlight the ease of getting started with Python and Robotics.  
+Supportive Environment: Offer support and mentoring for beginners to help them feel more comfortable and confident in their learning journey.  
+
+
+
+**Address Lack of Interest**  
+Gather Feedback: Reach out to those marked as “not interested” to understand their reasons. Use this feedback to refine course offerings and improve engagement strategies.  
+Targeted Messaging: Develop targeted messaging and campaigns that address the specific needs or concerns of potential students who initially showed a lack of interest.  
+
+
+
+**Improve Course Presentation**  
+Demo Optimization: Enhance the quality and appeal of course demos to increase interest. Ensure that demos clearly showcase the course benefits and value.  
+Engaging Content: Develop engaging and interactive content for demos and promotional materials to capture and retain interest.  
+
+
